@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![version](https://img.shields.io/badge/version-1.0-blue)
 
-bitnet.cpp is the official inference framework for BitNet models (e.g., BitNet b1.58), optimized for CPU devices. It offers a suite of optimized kernels, that support lossless inference of 1.58-bit models on both x86 and ARM architectures. 
+bitnet.cpp is the official inference framework for 1-bit LLMs (e.g., BitNet b1.58). It offers a suite of optimized kernels, that support fast and lossless inference of 1.58-bit models on CPU (with NPU and GPU support coming next). 
 
 ## Demo
 
