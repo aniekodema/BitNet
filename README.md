@@ -43,8 +43,9 @@ This project is based on the [llama.cpp](https://github.com/ggerganov/llama.cpp)
     </tr>
     <tr>
         <th>I2_S</th>
-        <th>TL1</th>
-        <th>TL2</th>
+        <th>TL1(TL1_1)</th>
+        <th>TL2(TL2_1)</th>
+        <th>TL2-Loss(TL2_0)</th>
     </tr>
     <tr>
         <td rowspan="2"><a href="https://huggingface.co/1bitLLM/bitnet_b1_58-large">bitnet_b1_58-large</a></td>
@@ -53,12 +54,14 @@ This project is based on the [llama.cpp](https://github.com/ggerganov/llama.cpp)
         <td>&#9989;</td>
         <td>&#10060;</td>
         <td>&#9989;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td>ARM</td>
         <td>&#9989;</td>
         <td>&#9989;</td>
         <td>&#10060;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td rowspan="2"><a href="https://huggingface.co/1bitLLM/bitnet_b1_58-3B">bitnet_b1_58-3B</a></td>
@@ -67,12 +70,14 @@ This project is based on the [llama.cpp](https://github.com/ggerganov/llama.cpp)
         <td>&#10060;</td>
         <td>&#10060;</td>
         <td>&#9989;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td>ARM</td>
         <td>&#10060;</td>
         <td>&#9989;</td>
         <td>&#10060;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td rowspan="2"><a href="https://huggingface.co/HF1BitLLM/Llama3-8B-1.58-100B-tokens">Llama3-8B-1.58-100B-tokens</a></td>
@@ -81,12 +86,14 @@ This project is based on the [llama.cpp](https://github.com/ggerganov/llama.cpp)
         <td>&#9989;</td>
         <td>&#10060;</td>
         <td>&#9989;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td>ARM</td>
         <td>&#9989;</td>
         <td>&#9989;</td>
         <td>&#10060;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td rowspan="2"><a href="https://huggingface.co/collections/tiiuae/falcon3-67605ae03578be86e4e87026">Falcon3 Family</a></td>
@@ -95,12 +102,14 @@ This project is based on the [llama.cpp](https://github.com/ggerganov/llama.cpp)
         <td>&#9989;</td>
         <td>&#10060;</td>
         <td>&#9989;</td>
+        <td>&#9989;</td>
     </tr>
     <tr>
         <td>ARM</td>
         <td>&#9989;</td>
         <td>&#9989;</td>
         <td>&#10060;</td>
+        <td>&#9989;</td>
     </tr>
 </table>
 
@@ -144,11 +153,11 @@ pip install -r requirements.txt
 3. Build the project
 ```bash
 # Download the model from Hugging Face, convert it to quantized gguf format, and build the project
-python setup_env.py --hf-repo tiiuae/Falcon3-7B-Instruct-1.58bit -q i2_s
+python setup_env.py --hf-repo 1bitLLM/bitnet_b1_58-large -q i2_s
 
 # Or you can manually download the model and run with local path
-huggingface-cli download tiiuae/Falcon3-7B-Instruct-1.58bit --local-dir models/Falcon3-7B-Instruct-1.58bit
-python setup_env.py -md models/Falcon3-7B-Instruct-1.58bit -q i2_s
+huggingface-cli download 1bitLLM/bitnet_b1_58-large --local-dir models/bitnet_b1_58-large
+python setup_env.py -md models/bitnet_b1_58-large -q i2_s
 ```
 <pre>
 usage: setup_env.py [-h] [--hf-repo {1bitLLM/bitnet_b1_58-large,1bitLLM/bitnet_b1_58-3B,HF1BitLLM/Llama3-8B-1.58-100B-tokens,tiiuae/Falcon3-1B-Instruct-1.58bit,tiiuae/Falcon3-3B-Instruct-1.58bit,tiiuae/Falcon3-7B-Instruct-1.58bit,tiiuae/Falcon3-10B-Instruct-1.58bit}] [--model-dir MODEL_DIR] [--log-dir LOG_DIR] [--quant-type {i2_s,tl1}] [--quant-embd]

@@ -5,8 +5,13 @@
 
 #ifdef __ARM_NEON
 #include <arm_neon.h>
+#if defined(GGML_BITNET_ARM_TL1)
 typedef float32_t bitnet_float_type;
 #else
+typedef float16_t bitnet_float_type;
+#endif
+#else
+#include <immintrin.h>
 typedef float bitnet_float_type;
 #endif
 
@@ -42,6 +47,10 @@ GGML_API void ggml_preprocessor(int m, int k, void* B, void* LUT_Scales, void* Q
 #if defined(GGML_BITNET_X86_TL2)
 GGML_API void ggml_qgemm_lut(int bs, int m, int k, int BK, void* A, void* sign, void* LUT, void* Scales, void* LUT_Scales, void* C);
 GGML_API void ggml_preprocessor(int bs, int m, int three_k, int two_k, void* B, void* LUT_Scales, void* Three_QLUT, void* Two_QLUT);
+#endif
+#if defined(GGML_BITNET_TL2_LOSS)
+GGML_API void ggml_qgemm_lut(int bs, int m, int k, int BK, void* A, void* sign, void* LUT, void* Scales, void* LUT_Scales, void* C);
+GGML_API void ggml_preprocessor(int bs, int m, int three_k, int two_k, void* B, void* Three_LUT_Scales, void* Two_LUT_Scales, void* Three_QLUT, void* Two_QLUT);
 #endif
 
 #ifdef  __cplusplus

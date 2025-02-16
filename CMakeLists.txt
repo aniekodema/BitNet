@@ -14,6 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # option list
 option(BITNET_ARM_TL1    "bitnet.cpp: use tl1 on arm platform"    OFF)
 option(BITNET_X86_TL2    "bitnet.cpp: use tl2 on x86 platform"    OFF)
+option(BITNET_TL2_LOSS    "bitnet.cpp: use tl2 on x86 platform"    OFF)
 
 
 set(CMAKE_CXX_STANDARD_REQUIRED true)
@@ -24,6 +25,7 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 # override ggml options
 set(GGML_BITNET_ARM_TL1    ${BITNET_ARM_TL1})
 set(GGML_BITNET_X86_TL2    ${BITNET_X86_TL2})
+set(GGML_BITNET_TL2_LOSS    ${BITNET_TL2_LOSS})
 
 if (GGML_BITNET_ARM_TL1)
     add_compile_definitions(GGML_BITNET_ARM_TL1)
@@ -31,9 +33,8 @@ endif()
 if (GGML_BITNET_X86_TL2)
     add_compile_definitions(GGML_BITNET_X86_TL2)
 endif()
-
-if (CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    add_compile_options(-fpermissive)
+if (GGML_BITNET_TL2_LOSS)
+    add_compile_definitions(GGML_BITNET_TL2_LOSS)
 endif()
 
 find_package(Threads REQUIRED)
